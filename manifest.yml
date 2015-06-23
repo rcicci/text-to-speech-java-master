@@ -1,0 +1,11 @@
+---
+declared-services:
+  text-to-speech-service:
+    label: text_to_speech
+    plan: free
+applications:
+- services:
+  - text-to-speech-service
+  name: roberto1-tts
+  path: output/webApp.war
+  memory: 512M
