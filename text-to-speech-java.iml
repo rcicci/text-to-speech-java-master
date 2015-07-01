@@ -24,5 +24,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="com.ibm.websphere.appserver.api.json_1.0.2" level="project" />
     <orderEntry type="library" name="commons-codec-1.6" level="project" />
+    <orderEntry type="library" name="db2jcc" level="project" />
+    <orderEntry type="library" name="nosqljson" level="project" />
   </component>
 </module>

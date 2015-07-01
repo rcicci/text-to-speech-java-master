@@ -67,13 +67,20 @@ public class DemoServlet extends HttpServlet {
 				download = true;
 			}
 
+			String dbValue = new DbHelper().getValue();
+			logger.log(Level.INFO, "dbValue: " + dbValue);
+
 			req.setCharacterEncoding("UTF-8");
 			try {
 				String queryStr = req.getQueryString();
 				String url = baseURL + "/v1/synthesize";
 				if (queryStr != null) {
+					if (dbValue != null) {
+						queryStr = queryStr.replace("text=", "text=" + dbValue);
+					}
 					url += "?" + queryStr;
 				}
+				logger.log(Level.INFO, "url: " + url);
 				URI uri = new URI(url).normalize();
 
 				Request newReq = Request.Get(uri);
@@ -130,7 +137,7 @@ public class DemoServlet extends HttpServlet {
 		logger.info("Processing VCAP_SERVICES");
 		JSONObject sysEnv = getVcapServices();
 		if (sysEnv == null) return;
-		logger.info("Looking for: "+ serviceName );
+		logger.info("Looking for: " + serviceName);
 
 		for (Object key : sysEnv.keySet()) {
 			String keyString = (String) key;
